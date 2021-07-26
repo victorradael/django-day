@@ -15,8 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import routers
+
+from dsApi.views import AthletsViewSet
+
+
+router = routers.DefaultRouter()
+router.register('athlets', AthletsViewSet, basename='Athlets')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('ds/', include('dsUsers.urls'))
+    path('ds/', include('dsUsers.urls')),
+    path('dsApi/', include(router.urls))
 ]
